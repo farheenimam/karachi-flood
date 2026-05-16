@@ -1,0 +1,5 @@
+.env    
+curl_command
+test_gemini.py
+firebase-credentials.json   
+venv

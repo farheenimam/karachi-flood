@@ -46,7 +46,7 @@ Respond ONLY with valid JSON. No markdown. No explanation."""
             try:
                 from google import genai
                 self._client = genai.Client(api_key=settings.gemini_api_key)
-                self.model = "gemini-2.0-flash"
+                self.model = "gemini-3-flash-preview"
             except Exception:
                 pass
 
