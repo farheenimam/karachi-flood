@@ -6,18 +6,37 @@ logger = structlog.get_logger()
 settings = get_settings()
 
 KARACHI_SEGMENTS = {
-    "University Road":  {"segment_id": "kar_uni_001", "lat": 24.9420, "lng": 67.1099},
-    "DHA":              {"segment_id": "kar_dha_001", "lat": 24.8116, "lng": 67.0598},
-    "Gulshan":          {"segment_id": "kar_gul_001", "lat": 24.9271, "lng": 67.0837},
-    "Nazimabad":        {"segment_id": "kar_naz_001", "lat": 24.9167, "lng": 67.0375},
-    "Saddar":           {"segment_id": "kar_sad_001", "lat": 24.8555, "lng": 67.0104},
-    "Korangi":          {"segment_id": "kar_kor_001", "lat": 24.8324, "lng": 67.1235},
-    "Malir":            {"segment_id": "kar_mal_001", "lat": 24.8889, "lng": 67.2026},
-    "North Karachi":    {"segment_id": "kar_nk_001",  "lat": 24.9805, "lng": 67.0633},
-    "Orangi Town":      {"segment_id": "kar_ori_001", "lat": 24.9619, "lng": 66.9944},
-    "Lyari":            {"segment_id": "kar_lya_001", "lat": 24.8726, "lng": 67.0174},
+    "University Road":      {"lat": 24.9312, "lng": 67.1098},
+    "DHA":                  {"lat": 24.8076, "lng": 67.0712},
+    "Gulshan":              {"lat": 24.9215, "lng": 67.0908},
+    "Nazimabad":            {"lat": 24.9189, "lng": 67.0542},
+    "Saddar":               {"lat": 24.8601, "lng": 67.0104},
+    "Korangi":              {"lat": 24.8412, "lng": 67.1289},
+    "Malir":                {"lat": 24.8935, "lng": 67.1987},
+    "North Karachi":        {"lat": 24.9723, "lng": 67.0721},
+    "Orangi Town":          {"lat": 24.9501, "lng": 66.9987},
+    "Lyari":                {"lat": 24.8689, "lng": 67.0221},
+    "Clifton":              {"lat": 24.8126, "lng": 67.0312},
+    "PECHS":                {"lat": 24.8721, "lng": 67.0589},
+    "Gulistan-e-Johar":     {"lat": 24.9089, "lng": 67.1221},
+    "FB Area":              {"lat": 24.9612, "lng": 67.0634},
+    "Liaquatabad":          {"lat": 24.9089, "lng": 67.0401},
+    "Landhi":               {"lat": 24.8512, "lng": 67.2134},
+    "Shah Faisal Colony":   {"lat": 24.8712, "lng": 67.1456},
+    "Surjani Town":         {"lat": 25.0123, "lng": 67.0634},
+    "Baldia Town":          {"lat": 24.9234, "lng": 66.9789},
+    "Kemari":               {"lat": 24.8234, "lng": 66.9789},
+    "Garden":               {"lat": 24.8712, "lng": 67.0234},
+    "Johar More":           {"lat": 24.9234, "lng": 67.1123},
+    "Sohrab Goth":          {"lat": 24.9712, "lng": 67.0789},
+    "Superhighway":         {"lat": 24.9923, "lng": 67.1234},
+    "Scheme 33":            {"lat": 24.9534, "lng": 67.1456},
+    "Bin Qasim":            {"lat": 24.7923, "lng": 67.3012},
+    "Model Colony":         {"lat": 24.8923, "lng": 67.1567},
+    "New Karachi":          {"lat": 24.9823, "lng": 67.0456},
+    "Rashidabad":           {"lat": 24.8634, "lng": 67.0912},
+    "Mauripur":             {"lat": 24.8423, "lng": 66.9567},
 }
-
 MOCK_TRAFFIC = {
     "University Road": {"congestion_level": 9, "speed_kmh": 5,  "free_flow_speed": 60, "incidents": 3},
     "DHA":             {"congestion_level": 4, "speed_kmh": 35, "free_flow_speed": 60, "incidents": 0},
@@ -48,7 +67,6 @@ async def get_traffic_data(location: str) -> dict:
             resp = await client.get(url, params={
                 "key": settings.tomtom_api_key,
                 "point": f"{seg['lat']},{seg['lng']}",
-                "unit": "KMPH",
             })
             resp.raise_for_status()
             data = resp.json().get("flowSegmentData", {})

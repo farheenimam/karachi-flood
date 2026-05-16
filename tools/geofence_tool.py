@@ -16,18 +16,28 @@ LOCATION_COORDS = {
 
 # Population density estimates (people/km2)
 POPULATION_DENSITY = {
-    "University Road":  18000,
-    "DHA":              8000,
-    "Gulshan":          22000,
-    "Nazimabad":        30000,
-    "Saddar":           25000,
-    "Korangi":          28000,
-    "Malir":            20000,
-    "North Karachi":    26000,
-    "Orangi Town":      35000,
-    "Lyari":            32000,
+    # existing ones stay same, add:
+    "Clifton":              6000,
+    "PECHS":                20000,
+    "Gulistan-e-Johar":     25000,
+    "FB Area":              28000,
+    "Liaquatabad":          32000,
+    "Landhi":               30000,
+    "Shah Faisal Colony":   27000,
+    "Surjani Town":         29000,
+    "Baldia Town":          33000,
+    "Kemari":               18000,
+    "Garden":               24000,
+    "Johar More":           26000,
+    "Sohrab Goth":          31000,
+    "Superhighway":         10000,
+    "Scheme 33":            22000,
+    "Bin Qasim":            15000,
+    "Model Colony":         28000,
+    "New Karachi":          30000,
+    "Rashidabad":           25000,
+    "Mauripur":             16000,
 }
-
 
 def calculate_geofence(incident: IncidentModel) -> dict:
     """

@@ -36,17 +36,20 @@ High-risk areas include Gulshan, Korangi, Orangi Town, University Road, Nazimaba
 Respond with ONLY valid JSON. No explanation. No markdown. Pure JSON only."""
 
     def __init__(self):
+        self._client = None
         self.model = None
         if settings.gemini_api_key:
             try:
                 from google import genai
                 self._client = genai.Client(api_key=settings.gemini_api_key)
                 self.model = "gemini-3-flash-preview"
-            except Exception:
-                self._client = None
+                logger.info("detector_gemini_ready", model=self.model)  # ADD THIS
+            except Exception as e:
+                logger.warning("detector_gemini_init_failed", error=str(e))  # ADD THIS
         else:
-            self._client = None
-
+            logger.warning("detector_gemini_skipped", reason="no api key")  # ADD THIS
+            
+            
     async def run(self, signal_input: SignalInput, state: WorkflowState) -> IncidentModel | None:
         state.current_agent = "detector"
         state.add_trace("Detector", f"Starting signal analysis for {signal_input.location}")
