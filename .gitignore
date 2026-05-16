@@ -3,10 +3,5 @@ curl_command.txt
 test_gemini.py
 firebase-credentials.json   
 venv
-agents/__pycache__
-api/__pycache__
-core/__pycache__
-models/__pycache__
-services/__pycache__
-tools/__pycache__
-__pycache__
+tools\__init__.py
+curl_command.txt
