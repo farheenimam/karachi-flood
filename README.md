@@ -1,21 +1,21 @@
-# Karachi Flood Command Center
+# Project CORE-KHI (Crisis Orchestration & Resilience Engine)
 
-Multi-agent AI backend for urban flood monitoring and emergency response. Uses Gemini AI, Meteosource weather API, and real-time WebSockets to detect, analyze, and respond to flooding events in Karachi.
+A high-fidelity, Autonomous Command Center designed to manage urban crises in Karachi. Powered by Google Antigravity and Gemini AI, this dual-engine architecture processes real-world data noise (Roman Urdu social signals, live telemetry) to orchestrate multi-agent responses for both **Monsoon Flooding** and **Summer Heatwave/Grid Failures**.
 
 ---
 
-## How it works
+## How it works _ The CIRO Multi-Agent Architecture
 
-Three AI agents run in sequence:
+Four specialized AI agents run in an autonomous, self-correcting loop:
 
 ```
-[Detector Agent]  →  reads weather, traffic, social signals → detects flood
+[SIFTER]     → Ingests weather/temperature, traffic APIs, and parses Roman Urdu social signals.
       ↓
-[Planner Agent]   →  validates incident, estimates impact, plans reroutes
+[STRATEGIST] → Cross-validates incidents, calculates population impact, and plans alternate routing.
       ↓
-[Executor Agent]  →  generates alerts, tickets, geofence zones via Gemini
+[VALIDATOR]  → Acts as a logic-gate to catch false alarms and prevent phantom dispatches.
       ↓
-[Firestore + WebSocket broadcast]
+[COMMANDER]  → Generates targeted alerts, dispatches municipal services, and updates the UI map state.
 ```
 
 ---
@@ -269,9 +269,18 @@ Expected: severity 8+, rerouting to Shahrah-e-Faisal Bypass
 ## PowerShell Test Commands
 
 ```powershell
-# Trigger simulation
-Invoke-RestMethod -Uri "http://localhost:8000/simulate" -Method POST -ContentType "application/json" -Body '{"location": "Gulshan", "social_posts": ["Gulshan mein pani bhar gaya", "rescue chahiye"]}'
-
+### Critical Heatwave & Grid Failure — I.I. Chundrigar
+```json
+{
+  "location": "I.I. Chundrigar Road",
+  "temperature_c": 44,
+  "social_posts": [
+    "Bohot shadeed dhoop hai chakkar aa rahe hain",
+    "Chundrigar main transformer phat gaya, no light",
+    "Heatstroke cases rising near financial district",
+    "Traffic jam aur garmi se bura haal hai"
+  ]
+}
 # Get all incidents
 Invoke-RestMethod -Uri "http://localhost:8000/incidents"
 
@@ -304,14 +313,14 @@ Superhighway
 
 ---
 
-## What each agent does
+## Agent Roles & Responsibilities
 
-| Agent | Job | Uses Gemini? |
-|-------|-----|-------------|
-| Detector | Reads weather + traffic + social signals. Decides if it's a real flood. | Yes |
-| Planner | Cross-validates the incident, estimates population, generates reroutes. | Yes |
-| Executor | Writes smart alert message, creates emergency ticket, defines geofence. | Yes |
-
+| Agent | Core Function | Uses Gemini AI? |
+|-------|---------------|-----------------|
+| **SIFTER** | Parses raw strings (e.g., *"pani khara hai"*, *"light nahi hai"*). Identifies location and crisis type (Flood vs. Heat). | Yes |
+| **STRATEGIST** | Analyzes severity, queries traffic blockages, and formulates a localized response plan. | Yes |
+| **VALIDATOR** | The safety layer. Rejects conflicting data (e.g., rejecting a flood alert if Meteosource shows 0mm rain). | Yes |
+| **COMMANDER** | Executes the final JSON payload to trigger frontend map changes, SMS alerts, and geofences. | Yes |
 ---
 
 ## Simulation Mode vs Live Mode
