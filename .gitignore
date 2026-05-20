@@ -1,7 +1,36 @@
-.env    
+# Environment & Secrets
+.env
+*.env
+firebase-credentials.json
+serviceAccountKey.json
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Node / Capacitor
+node_modules/
+android/app/build/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+uvicorn.log
+uvicorn_err.log
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test/Scratch
 curl_command.txt
 test_gemini.py
-firebase-credentials.json   
-venv
-tools\__init__.py
-curl_command.txt

@@ -2,6 +2,7 @@ import structlog
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from core.config import get_settings
 from api.routes import router
@@ -50,8 +51,11 @@ app.add_middleware(
 app.include_router(router, tags=["REST"])
 app.include_router(ws_router, tags=["WebSocket"])
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 @app.get("/", tags=["Health"])
+@app.get("/health", tags=["Health"])
 async def root():
     return {
         "system": "Karachi Flood Command Center",
